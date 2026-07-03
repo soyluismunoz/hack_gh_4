@@ -1,1 +1,17 @@
+name: Descargar repositorio
+on: [push, pull_request, fork]
 
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código del repo al runner
+        uses: actions/checkout@v4
+      - run: ls -la
+
+      - name: Subir proyecto como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: archivos-proyecto
+          path: .
+          retention-days: 7    
